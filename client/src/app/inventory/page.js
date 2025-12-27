@@ -2,22 +2,22 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation"; 
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { Plus, PackageSearch, FilterX } from "lucide-react";
 import { getInventory } from "../../lib/api";
 import InventoryTable from "../../components/inventory/InventoryTable";
 
-export default function InventoryPage() {
+function InventoryContent() {
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Hooks for navigation and URL state
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  
+
   // Extract search term
   const searchQuery = searchParams.get("q") || "";
 
@@ -114,5 +114,13 @@ export default function InventoryPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function InventoryPage() {
+  return (
+    <Suspense fallback={<div>Loading Inventory System...</div>}>
+      <InventoryContent />
+    </Suspense>
   );
 }
