@@ -5,8 +5,8 @@ import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
 
 export const metadata = {
-  title: "RevSync | Enterprise Inventory",
-  description: "Professional Warehouse Management System",
+  title: "Inventory Velocity | Enterprise v1.0",
+  description: "High-fidelity logistics and stock aging management system.",
 };
 
 export default function RootLayout({ children }) {
